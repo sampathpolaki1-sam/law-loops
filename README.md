@@ -2,6 +2,10 @@
 
 A modern, educational web application designed to help users understand their legal rights with an elegant, accessible interface. LegalLoop provides simplified legal guidance, IPC section references, emergency contacts, and legal resources for Indian citizens.
 
+## Live Demo
+
+[View Live Site](https://venerable-daifuku-4b3b06.netlify.app/)
+
 ## Features
 
 - 🎓 Educational legal content
