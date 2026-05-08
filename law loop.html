@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegalLoop — Know Your Rights</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a0f1e;
+  --navy-2: #111827;
+  --navy-3: #1a2236;
+  --navy-4: #1e2d45;
+  --accent: #3b82f6;
+  --accent-2: #60a5fa;
+  --accent-glow: rgba(59,130,246,0.18);
+  --gold: #f59e0b;
+  --gold-light: #fcd34d;
+  --red: #ef4444;
+  --green: #10b981;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: rgba(255,255,255,0.07);
+  --border-active: rgba(59,130,246,0.4);
+  --card-bg: rgba(255,255,255,0.04);
+  --card-bg-hover: rgba(59,130,246,0.06);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--navy);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Background grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========= HEADER ========= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,15,30,0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  letter-spacing: -0.5px;
+  color: white;
+}
+.logo span { color: var(--accent-2); }
+.logo sub {
+  font-family: var(--sans);
+  font-size: 0.5rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  vertical-align: middle;
+  margin-left: 4px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+nav ul { display: flex; gap: 4px; list-style: none; }
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+nav a:hover, nav a.active {
+  color: white;
+  background: var(--card-bg);
+}
+.emergency-btn {
+  background: rgba(239,68,68,0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239,68,68,0.25) !important;
+}
+.emergency-btn:hover {
+  background: rgba(239,68,68,0.25) !important;
+  color: white !important;
+}
+
+/* ========= HERO ========= */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 40px 60px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.25);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent-2);
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+}
+.hero-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.15;
+  color: white;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-2);
+}
+.hero p {
+  max-width: 600px;
+  margin: 0 auto 36px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+  letter-spacing: 0.2px;
+}
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(59,130,246,0.3);
+}
+.btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(59,130,246,0.4);
+}
+.btn-ghost {
+  background: var(--card-bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.14);
+}
+.btn-danger {
+  background: rgba(239,68,68,0.12);
+  color: #fca5a5;
+  border-color: rgba(239,68,68,0.25);
+}
+.btn-danger:hover {
+  background: rgba(239,68,68,0.2);
+  transform: translateY(-2px);
+}
+
+/* ========= QUICK CARDS ========= */
+.quick-cards {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 14px;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 40px;
+}
+.qcard {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 18px;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.qcard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+.qcard:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--border-active);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(59,130,246,0.12);
+}
+.qcard:hover::before { opacity: 1; }
+.qcard-icon {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+.qcard h3 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
+}
+.qcard p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ========= TABS ========= */
+.tabs-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+}
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 5px;
+  margin-bottom: 28px;
+  overflow-x: auto;
+}
+.tab {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.tab.active {
+  background: var(--navy-4);
+  color: white;
+  border: 1px solid var(--border-active);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ========= SEARCH PANEL ========= */
+.search-box {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.input-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+.input-wrap input, .input-wrap textarea {
+  width: 100%;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 50px 14px 16px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+.input-wrap input:focus, .input-wrap textarea:focus {
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.08);
+}
+.input-wrap input::placeholder, .input-wrap textarea::placeholder { color: var(--text-muted); }
+.voice-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+  transition: color 0.2s;
+}
+.voice-btn:hover { color: var(--accent-2); }
+.lang-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.lang-row select {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  outline: none;
+  cursor: pointer;
+}
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ========= RESULT BOX ========= */
+.result-box {
+  margin-top: 20px;
+  background: var(--navy);
+  border: 1px solid var(--border-active);
+  border-radius: 12px;
+  padding: 24px;
+  display: none;
+  animation: fadeUp 0.3s ease;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.result-box.visible { display: block; }
+.result-box h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.ipc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(59,130,246,0.12);
+  border: 1px solid rgba(59,130,246,0.25);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent-2);
+  margin: 4px 4px 4px 0;
+}
+.steps-list {
+  list-style: none;
+  margin-top: 14px;
+}
+.steps-list li {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.steps-list li:last-child { border-bottom: none; }
+.step-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: rgba(59,130,246,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-top: 1px;
+}
+.loading-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.loading-dots span {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: blink 1.2s infinite;
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
+.ai-response-text {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+/* ========= AI CHAT PANEL ========= */
+.chat-wrap {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.chat-history {
+  height: 360px;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.chat-history::-webkit-scrollbar { width: 4px; }
+.chat-history::-webkit-scrollbar-track { background: transparent; }
+.chat-history::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.msg {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  animation: fadeUp 0.2s ease;
+}
+.msg.user {
+  align-self: flex-end;
+  background: var(--accent);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+.msg.ai {
+  align-self: flex-start;
+  background: var(--navy-3);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+.msg.ai strong { color: var(--accent-2); }
+.chat-footer {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--navy-3);
+}
+.chat-footer input {
+  flex: 1;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  outline: none;
+}
+.chat-footer input:focus { border-color: var(--border-active); }
+.chat-lang-select {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ========= FIR GENERATOR ========= */
+.fir-wrap {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.fir-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+@media(max-width:600px){ .fir-grid { grid-template-columns: 1fr; } }
+.fir-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+.fir-field input, .fir-field select, .fir-field textarea {
+  width: 100%;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+.fir-field input:focus, .fir-field select, .fir-field textarea:focus {
+  border-color: var(--border-active);
+}
+.fir-field textarea { min-height: 80px; }
+.fir-preview {
+  background: var(--navy);
+  border: 1px solid var(--border-active);
+  border-radius: 10px;
+  padding: 24px;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  display: none;
+}
+.fir-preview.visible { display: block; animation: fadeUp 0.3s ease; }
+
+/* ========= LAWYER FINDER ========= */
+.lawyer-wrap {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.lawyer-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.lawyer-card {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+.lawyer-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(59,130,246,0.1);
+}
+.lawyer-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+.lawyer-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+}
+.lawyer-spec {
+  font-size: 0.78rem;
+  color: var(--accent-2);
+  margin-bottom: 8px;
+}
+.lawyer-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.rating {
+  color: var(--gold);
+  font-size: 0.78rem;
+}
+.lawyer-contact-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 7px;
+  color: var(--accent-2);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.lawyer-contact-btn:hover {
+  background: rgba(59,130,246,0.2);
+  color: white;
+}
+
+/* ========= CASE TRACKER ========= */
+.tracker-wrap {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.case-list { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.case-item {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.case-item:hover {
+  border-color: var(--border-active);
+  background: var(--navy-3);
+}
+.case-info { flex: 1; min-width: 0; }
+.case-title {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: white;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.case-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.case-status {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.status-open {
+  background: rgba(59,130,246,0.15);
+  color: var(--accent-2);
+  border: 1px solid rgba(59,130,246,0.2);
+}
+.status-filed {
+  background: rgba(245,158,11,0.12);
+  color: var(--gold-light);
+  border: 1px solid rgba(245,158,11,0.2);
+}
+.status-resolved {
+  background: rgba(16,185,129,0.12);
+  color: #6ee7b7;
+  border: 1px solid rgba(16,185,129,0.2);
+}
+.add-case-form {
+  background: var(--navy-3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 16px;
+  display: none;
+}
+.add-case-form.visible { display: block; animation: fadeUp 0.25s ease; }
+.form-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.form-row input, .form-row select {
+  flex: 1;
+  min-width: 120px;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  outline: none;
+}
+.form-row input:focus { border-color: var(--border-active); }
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+}
+.empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+/* ========= EMERGENCY ========= */
+.emergency-panel {
+  background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(239,68,68,0.03));
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 16px;
+  padding: 32px;
+}
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+.emergency-card {
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.15);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.emergency-card:hover {
+  background: rgba(239,68,68,0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(239,68,68,0.12);
+}
+.e-icon { font-size: 1.8rem; margin-bottom: 8px; }
+.e-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+.e-number {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: #fca5a5;
+  font-weight: bold;
+}
+.e-desc { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+
+/* ========= FOOTER ========= */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+footer a { color: var(--text-muted); text-decoration: underline; }
+
+/* ========= MISC ========= */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: white;
+  margin-bottom: 6px;
+}
+.section-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--navy-4);
+  border: 1px solid var(--border-active);
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  z-index: 999;
+  transform: translateY(60px);
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+@media(max-width:700px) {
+  header { padding: 0 16px; }
+  .hero, .quick-cards, .tabs-wrapper { padding-left: 16px; padding-right: 16px; }
+  .hero { padding-top: 50px; }
+  nav ul { gap: 0; }
+  nav a { padding: 6px 10px; font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Legal<span>Loop</span><sub>IND</sub></div>
+    <ul>
+      <li><a href="javascript:void(0)" onclick="switchTab('search');scrollToMain()">Search</a></li>
+      <li><a href="javascript:void(0)" onclick="switchTab('chat');scrollToMain()">AI Chat</a></li>
+      <li><a href="javascript:void(0)" onclick="switchTab('fir');scrollToMain()">FIR</a></li>
+      <li><a href="javascript:void(0)" onclick="switchTab('tracker');scrollToMain()">Cases</a></li>
+      <li><a href="javascript:void(0)" onclick="switchTab('emergency');scrollToMain()" class="emergency-btn">🚨 Emergency</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> Right To Know</div>
+  <h1>Know your rights<br><em>in plain language</em></h1>
+  <p>Describe your issue in simple words. LegalLoop provides AI-powered legal guidance, relevant IPC sections, and next steps for Indian citizens — in English, Hindi, or Telugu.</p>
+  <div class="hero-btns">
+    <button class="btn btn-primary" onclick="switchTab('search'); scrollToMain()">⚖️ Get Legal Guidance</button>
+    <button class="btn btn-ghost" onclick="switchTab('chat'); scrollToMain()">🤖 Ask AI Assistant</button>
+    <button class="btn btn-danger" onclick="switchTab('emergency'); scrollToMain()">🚨 Emergency Contacts</button>
+  </div>
+</section>
+
+<!-- QUICK CARDS -->
+<div class="quick-cards">
+  <div class="qcard" onclick="quickSearch('someone cheated me in UPI payment, I lost money online')">
+    <div class="qcard-icon">💸</div>
+    <h3>Fraud / Cheating</h3>
+    <p>Online scams, UPI fraud, money cheating</p>
+  </div>
+  <div class="qcard" onclick="quickSearch('my phone was stolen by a person on street')">
+    <div class="qcard-icon">📱</div>
+    <h3>Theft</h3>
+    <p>Stolen items, robbery, pickpocket</p>
+  </div>
+  <div class="qcard" onclick="quickSearch('I am being cyberbullied and blackmailed on instagram')">
+    <div class="qcard-icon">🛡️</div>
+    <h3>Cyber Crime</h3>
+    <p>Hacking, blackmail, online abuse</p>
+  </div>
+  <div class="qcard" onclick="quickSearch('I am facing domestic harassment and abuse at home')">
+    <div class="qcard-icon">🏠</div>
+    <h3>Harassment</h3>
+    <p>Domestic abuse, threats, stalking</p>
+  </div>
+  <div class="qcard" onclick="quickSearch('someone physically assaulted and attacked me')">
+    <div class="qcard-icon">⚠️</div>
+    <h3>Assault</h3>
+    <p>Physical attack, battery, injury</p>
+  </div>
+  <div class="qcard" onclick="quickSearch('my employer is not paying my salary and cheating me')">
+    <div class="qcard-icon">💼</div>
+    <h3>Labour Rights</h3>
+    <p>Salary dispute, wrongful termination</p>
+  </div>
+</div>
+
+<!-- MAIN TABS -->
+<div class="tabs-wrapper" id="main">
+  <div class="tabs">
+    <button class="tab active" id="tab-search" onclick="switchTab('search')">⚖️ Legal Search</button>
+    <button class="tab" id="tab-chat" onclick="switchTab('chat')">🤖 AI Assistant</button>
+    <button class="tab" id="tab-fir" onclick="switchTab('fir')">📄 FIR Generator</button>
+    <button class="tab" id="tab-lawyer" onclick="switchTab('lawyer')">👨‍⚖️ Lawyer Finder</button>
+    <button class="tab" id="tab-tracker" onclick="switchTab('tracker')">📁 Case Tracker</button>
+    <button class="tab" id="tab-emergency" onclick="switchTab('emergency')">🚨 Emergency</button>
+  </div>
+
+  <!-- SEARCH PANEL -->
+  <div class="tab-panel active" id="panel-search">
+    <div class="search-box">
+      <div class="section-label">Legal Guidance</div>
+      <div class="section-title">Describe Your Issue</div>
+      <div class="section-sub">Explain what happened in your own words. Our AI will identify relevant laws and guide your next steps.</div>
+      <div class="lang-row">
+        <span style="font-size:0.8rem;color:var(--text-muted)">Language:</span>
+        <select id="searchLang" onchange="updatePlaceholder()">
+          <option value="en">🇬🇧 English</option>
+          <option value="hi">🇮🇳 Hindi</option>
+          <option value="te">Telugu</option>
+        </select>
+      </div>
+      <div class="input-wrap">
+        <input id="issueInput" placeholder="Example: Someone cheated me in a UPI payment and blocked me..." />
+        <button class="voice-btn" onclick="startVoice()" title="Voice Input">🎤</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="analyzeWithAI()">⚖️ Get AI Guidance</button>
+        <button class="btn btn-ghost" onclick="clearSearch()">✕ Clear</button>
+      </div>
+      <div id="searchResult" class="result-box"></div>
+    </div>
+  </div>
+
+  <!-- CHAT PANEL -->
+  <div class="tab-panel" id="panel-chat">
+    <div class="chat-wrap">
+      <div class="chat-history" id="chatHistory">
+        <div class="msg ai">👋 <strong>Namaste!</strong> I'm your AI legal assistant trained on Indian law. Ask me anything about your rights, IPC sections, police procedures, or legal steps.<br><br>I can respond in <strong>English, Hindi, or Telugu</strong>.</div>
+      </div>
+      <div class="chat-footer">
+        <select class="chat-lang-select" id="chatLang">
+          <option value="en">EN</option>
+          <option value="hi">हिं</option>
+          <option value="te">తె</option>
+        </select>
+        <input id="chatInput" placeholder="Ask: Can police arrest without a warrant?" onkeydown="if(event.key==='Enter') sendChat()" />
+        <button class="btn btn-primary" onclick="sendChat()" style="padding:10px 18px;font-size:0.82rem;">Send ↑</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIR PANEL -->
+  <div class="tab-panel" id="panel-fir">
+    <div class="fir-wrap">
+      <div class="section-label">Document Generator</div>
+      <div class="section-title">FIR / Complaint Format</div>
+      <div class="section-sub">Fill in the details to generate a ready-to-use FIR complaint that you can download and take to the police station.</div>
+      <div class="fir-grid">
+        <div class="fir-field"><label>Your Full Name</label><input id="firName" placeholder="e.g. Rajesh Kumar" /></div>
+        <div class="fir-field"><label>Date of Incident</label><input id="firDate" type="date" /></div>
+        <div class="fir-field"><label>Location of Incident</label><input id="firLocation" placeholder="e.g. Dilsukhnagar, Hyderabad" /></div>
+        <div class="fir-field"><label>Type of Offence</label>
+          <select id="firType">
+            <option value="">-- Select --</option>
+            <option value="Fraud/Cheating">Fraud / Cheating (IPC 420)</option>
+            <option value="Theft">Theft (IPC 378/379)</option>
+            <option value="Cyber Crime">Cyber Crime (IT Act 66E)</option>
+            <option value="Harassment">Harassment (IPC 354A/506)</option>
+            <option value="Assault">Assault (IPC 351/323)</option>
+            <option value="Domestic Violence">Domestic Violence (DV Act 2005)</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="fir-field" style="grid-column:1/-1"><label>Accused Person(s) Details (if known)</label><input id="firAccused" placeholder="e.g. Unknown / Name, phone number, address" /></div>
+        <div class="fir-field" style="grid-column:1/-1"><label>Description of Incident</label><textarea id="firDesc" placeholder="Describe what happened in detail — date, time, how it happened, losses incurred..."></textarea></div>
+        <div class="fir-field"><label>Evidence Available</label><input id="firEvidence" placeholder="e.g. Screenshots, transaction ID, witnesses" /></div>
+        <div class="fir-field"><label>Your Contact Number</label><input id="firContact" placeholder="e.g. 9876543210" /></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="generateFIR()">📄 Generate FIR</button>
+        <button class="btn btn-ghost" onclick="downloadFIR()">⬇️ Download as Text</button>
+      </div>
+      <div id="firPreview" class="fir-preview"></div>
+    </div>
+  </div>
+
+  <!-- LAWYER FINDER -->
+  <div class="tab-panel" id="panel-lawyer">
+    <div class="lawyer-wrap">
+      <div class="section-label">Legal Professionals</div>
+      <div class="section-title">Find a Lawyer Nearby</div>
+      <div class="section-sub">Browse verified legal professionals in Hyderabad and nearby areas. Filter by specialisation.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+        <select id="lawyerFilter" onchange="filterLawyers()" style="background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:var(--sans);font-size:0.82rem;outline:none;">
+          <option value="all">All Specialisations</option>
+          <option value="Criminal">Criminal Law</option>
+          <option value="Cyber">Cyber Crime</option>
+          <option value="Family">Family / Domestic</option>
+          <option value="Labour">Labour Law</option>
+          <option value="Consumer">Consumer Rights</option>
+        </select>
+        <button class="btn btn-ghost" onclick="locateLawyers()" style="font-size:0.82rem;padding:9px 14px;">📍 Use My Location</button>
+      </div>
+      <div class="lawyer-cards" id="lawyerCards"></div>
+    </div>
+  </div>
+
+  <!-- CASE TRACKER -->
+  <div class="tab-panel" id="panel-tracker">
+    <div class="tracker-wrap">
+      <div class="section-label">Case Management</div>
+      <div class="section-title">My Case Tracker</div>
+      <div class="section-sub">Keep a log of your legal matters, statuses, and follow-ups.</div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-primary" onclick="toggleAddCase()" style="font-size:0.82rem;padding:9px 16px;">+ Add New Case</button>
+      </div>
+      <div class="add-case-form" id="addCaseForm">
+        <div class="form-row">
+          <input id="newCaseTitle" placeholder="Case title (e.g. UPI Fraud — June 2026)" />
+          <select id="newCaseStatus">
+            <option value="open">Open</option>
+            <option value="filed">FIR Filed</option>
+            <option value="resolved">Resolved</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <input id="newCaseNote" placeholder="Notes (optional)" />
+        </div>
+        <button class="btn btn-primary" onclick="addCase()" style="font-size:0.82rem;padding:8px 16px;">Save Case</button>
+      </div>
+      <div class="case-list" id="caseList"></div>
+    </div>
+  </div>
+
+  <!-- EMERGENCY -->
+  <div class="tab-panel" id="panel-emergency">
+    <div class="emergency-panel">
+      <div class="section-label">Emergency Contacts</div>
+      <div class="section-title">Help is One Call Away</div>
+      <div class="section-sub">Tap a number to call immediately. All contacts are official Indian government helplines.</div>
+      <div class="emergency-grid">
+        <a class="emergency-card" href="tel:100">
+          <div class="e-icon">🚔</div>
+          <div class="e-name">Police</div>
+          <div class="e-number">100</div>
+          <div class="e-desc">Law & Order</div>
+        </a>
+        <a class="emergency-card" href="tel:112">
+          <div class="e-icon">🆘</div>
+          <div class="e-name">Emergency</div>
+          <div class="e-number">112</div>
+          <div class="e-desc">Universal Emergency</div>
+        </a>
+        <a class="emergency-card" href="tel:108">
+          <div class="e-icon">🚑</div>
+          <div class="e-name">Ambulance</div>
+          <div class="e-number">108</div>
+          <div class="e-desc">Medical Emergency</div>
+        </a>
+        <a class="emergency-card" href="tel:1091">
+          <div class="e-icon">👩</div>
+          <div class="e-name">Women Helpline</div>
+          <div class="e-number">1091</div>
+          <div class="e-desc">Women in Distress</div>
+        </a>
+        <a class="emergency-card" href="tel:1930">
+          <div class="e-icon">💻</div>
+          <div class="e-name">Cyber Fraud</div>
+          <div class="e-number">1930</div>
+          <div class="e-desc">Cyber Crime Help</div>
+        </a>
+        <a class="emergency-card" href="tel:181">
+          <div class="e-icon">🏠</div>
+          <div class="e-name">Domestic Violence</div>
+          <div class="e-number">181</div>
+          <div class="e-desc">Abuse Helpline</div>
+        </a>
+        <a class="emergency-card" href="tel:1800110001">
+          <div class="e-icon">⚖️</div>
+          <div class="e-name">Legal Aid</div>
+          <div class="e-number">15100</div>
+          <div class="e-desc">Free Legal Services</div>
+        </a>
+        <a class="emergency-card" href="tel:14567">
+          <div class="e-icon">👴</div>
+          <div class="e-name">Senior Citizens</div>
+          <div class="e-number">14567</div>
+          <div class="e-desc">Elder Helpline</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="logo" style="font-size:1.1rem;margin-bottom:8px;">Legal<span>Loop</span></div>
+  <p>AI-powered legal guidance for Indian citizens. Not a substitute for professional legal advice.</p>
+  <p style="margin-top:4px;">For serious matters, always consult a qualified advocate. Helplines are free and confidential.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ========= TAB SWITCHING =========
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+function scrollToMain() {
+  document.getElementById('main').scrollIntoView({behavior:'smooth'});
+}
+
+// ========= TOAST =========
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ========= QUICK SEARCH =========
+function quickSearch(text) {
+  document.getElementById('issueInput').value = text;
+  switchTab('search');
+  scrollToMain();
+  analyzeWithAI();
+}
+
+// ========= AI LEGAL SEARCH =========
+async function analyzeWithAI() {
+  const input = document.getElementById('issueInput').value.trim();
+  if (!input) { showToast('Please describe your issue first.'); return; }
+  const lang = document.getElementById('searchLang').value;
+  const resultBox = document.getElementById('searchResult');
+  resultBox.className = 'result-box visible';
+  resultBox.innerHTML = `<h3>Analysing your issue…</h3><div class="loading-dots"><span></span><span></span><span></span></div>`;
+
+  const langInstructions = {
+    en: 'Respond in English.',
+    hi: 'Respond in Hindi (Devanagari script).',
+    te: 'Respond in Telugu script.'
+  };
+
+  const systemPrompt = `You are LegalLoop, an expert AI assistant on Indian law. ${langInstructions[lang]}
+When a user describes a legal issue:
+1. Identify the nature of the crime/issue (1 sentence).
+2. List the most relevant IPC sections or Acts with a brief explanation of each.
+3. Give 4-5 clear numbered action steps the person should take immediately.
+4. Mention any important rights the person has.
+Keep the tone clear, simple, and helpful. Format with clear headings using **bold**.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: `My legal issue: ${input}` }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || 'Unable to get response. Please try again.';
+    resultBox.innerHTML = `<h3>⚖️ Legal Guidance</h3><div class="ai-response-text">${formatAI(text)}</div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-ghost" style="font-size:0.78rem;padding:7px 14px" onclick="switchTab('fir');scrollToMain()">📄 Generate FIR</button>
+      <button class="btn btn-ghost" style="font-size:0.78rem;padding:7px 14px" onclick="switchTab('chat');scrollToMain()">🤖 Ask Follow-up</button>
+      <button class="btn btn-ghost" style="font-size:0.78rem;padding:7px 14px" onclick="switchTab('lawyer');scrollToMain()">👨‍⚖️ Find Lawyer</button>
+    </div>`;
+  } catch(e) {
+    resultBox.innerHTML = `<h3>⚖️ Offline Guidance</h3>${offlineFallback(input)}`;
+  }
+}
+
+function formatAI(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong style="color:white">$1</strong>')
+    .replace(/^(\d+\.\s)/gm, '<br><strong style="color:var(--accent-2)">$1</strong>')
+    .replace(/\n/g, '<br>');
+}
+
+function offlineFallback(input) {
+  const legalMap = [
+    {k:['cheat','fraud','payment','upi','money','scam'], t:'Fraud / Cheating', l:'IPC Section 420', s:'File a complaint at local police station and call Cyber Fraud helpline 1930.'},
+    {k:['stole','theft','phone','bike','robbery','stolen'], t:'Theft', l:'IPC Section 378/379', s:'Report at nearest police station with proof. Note the FIR number.'},
+    {k:['cyber','hack','instagram','bully','blackmail','extortion'], t:'Cyber Crime', l:'IT Act 66E, IPC 384, 503', s:'Call Cyber helpline 1930. File complaint at cybercrime.gov.in.'},
+    {k:['harass','abuse','threat','domestic'], t:'Harassment / Domestic', l:'IPC 354A/506, DV Act 2005', s:'Call Women Helpline 1091. File complaint with protection officer.'},
+    {k:['attack','hit','assault','fight'], t:'Assault', l:'IPC 351/323', s:'Seek medical attention first. File police complaint with medical report.'},
+    {k:['salary','employer','payment','job','work'], t:'Labour Dispute', l:'Payment of Wages Act, Labour Code 2020', s:'Approach Labour Commissioner. File complaint with labour department.'}
+  ];
+  const q = input.toLowerCase();
+  let found = legalMap.find(m => m.k.some(k => q.includes(k)));
+  if (found) return `<div class="ai-response-text"><strong style="color:white">Issue Identified: ${found.t}</strong><br><br><strong style="color:var(--accent-2)">Relevant Law:</strong> ${found.l}<br><br><strong style="color:var(--accent-2)">Immediate Steps:</strong><br>${found.s}</div>`;
+  return `<div class="ai-response-text">Please use keywords like fraud, theft, cyber, harassment, assault for better results. Or try the AI Assistant tab.</div>`;
+}
+
+function clearSearch() {
+  document.getElementById('issueInput').value = '';
+  const r = document.getElementById('searchResult');
+  r.className = 'result-box';
+  r.innerHTML = '';
+}
+
+function updatePlaceholder() {
+  const lang = document.getElementById('searchLang').value;
+  const inp = document.getElementById('issueInput');
+  if (lang === 'hi') inp.placeholder = 'उदाहरण: किसी ने मेरे साथ UPI में धोखाधड़ी की...';
+  else if (lang === 'te') inp.placeholder = 'ఉదాహరణ: ఎవరైనా నా UPI పేమెంట్‌లో మోసం చేశారు...';
+  else inp.placeholder = 'Example: Someone cheated me in a UPI payment and blocked me...';
+}
+
+// ========= VOICE =========
+function startVoice() {
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    showToast('Voice input requires Chrome browser.');
+    return;
+  }
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const rec = new SpeechRecognition();
+  rec.lang = 'en-IN';
+  rec.start();
+  showToast('🎤 Listening… speak now');
+  rec.onresult = e => {
+    document.getElementById('issueInput').value = e.results[0][0].transcript;
+    analyzeWithAI();
+  };
+  rec.onerror = () => showToast('Could not hear audio. Try again.');
+}
+
+// ========= AI CHAT =========
+const chatHistory = [
+  { role: 'user', content: 'Hello' },
+  { role: 'assistant', content: 'Namaste! I\'m your AI legal assistant trained on Indian law. Ask me anything about your rights, IPC sections, police procedures, or legal steps. I can respond in English, Hindi, or Telugu.' }
+];
+
+async function sendChat() {
+  const input = document.getElementById('chatInput').value.trim();
+  if (!input) return;
+  const lang = document.getElementById('chatLang').value;
+  document.getElementById('chatInput').value = '';
+
+  appendMsg(input, 'user');
+  chatHistory.push({ role: 'user', content: input });
+
+  const thinkingEl = appendMsg('<div class="loading-dots"><span></span><span></span><span></span></div>', 'ai');
+
+  const langInstr = {en:'Respond in English.', hi:'Respond in Hindi.', te:'Respond in Telugu.'};
+  const system = `You are LegalLoop AI, an expert on Indian law. ${langInstr[lang]} Be concise, helpful, and practical. Format key terms in **bold**.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system,
+        messages: chatHistory
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Sorry, I could not get a response.';
+    thinkingEl.innerHTML = formatAI(reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch(e) {
+    thinkingEl.innerHTML = 'Network error. Please check your connection.';
+  }
+  const hist = document.getElementById('chatHistory');
+  hist.scrollTop = hist.scrollHeight;
+}
+
+function appendMsg(html, role) {
+  const hist = document.getElementById('chatHistory');
+  const el = document.createElement('div');
+  el.className = 'msg ' + role;
+  el.innerHTML = html;
+  hist.appendChild(el);
+  hist.scrollTop = hist.scrollHeight;
+  return el;
+}
+
+// ========= FIR GENERATOR =========
+function generateFIR() {
+  const name = document.getElementById('firName').value || '[Your Name]';
+  const date = document.getElementById('firDate').value || '[Date]';
+  const loc = document.getElementById('firLocation').value || '[Location]';
+  const type = document.getElementById('firType').value || '[Offence Type]';
+  const accused = document.getElementById('firAccused').value || 'Unknown';
+  const desc = document.getElementById('firDesc').value || '[Description of incident]';
+  const evidence = document.getElementById('firEvidence').value || 'To be submitted';
+  const contact = document.getElementById('firContact').value || '[Contact Number]';
+
+  const text = `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          FIRST INFORMATION REPORT (FIR)
+              COMPLAINT APPLICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To,
+The Station House Officer,
+[Police Station Name],
+[City], [State]
+
+Subject: Complaint regarding ${type}
+
+Respected Sir/Madam,
+
+I, ${name}, hereby lodge this complaint regarding an incident of ${type} that took place on ${date} at ${loc}.
+
+DETAILS OF INCIDENT:
+${desc}
+
+ACCUSED PERSON(S):
+${accused}
+
+EVIDENCE AVAILABLE:
+${evidence}
+
+I request you to kindly take cognisance of this complaint and register an FIR under the appropriate sections of IPC/relevant Acts, and take necessary action at the earliest.
+
+I declare that the above information is true and correct to the best of my knowledge.
+
+Complainant Name : ${name}
+Contact Number  : ${contact}
+Date of Complaint: ${new Date().toLocaleDateString('en-IN')}
+
+Signature: _______________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Generated by LegalLoop · legalloop.in
+`;
+
+  const preview = document.getElementById('firPreview');
+  preview.textContent = text;
+  preview.className = 'fir-preview visible';
+  showToast('✅ FIR format generated!');
+}
+
+function downloadFIR() {
+  const text = document.getElementById('firPreview').textContent;
+  if (!text.trim()) { generateFIR(); }
+  setTimeout(() => {
+    const t = document.getElementById('firPreview').textContent;
+    const blob = new Blob([t], {type: 'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'LegalLoop_FIR_Complaint.txt';
+    a.click();
+    showToast('📥 FIR downloaded!');
+  }, 300);
+}
+
+// ========= LAWYER FINDER =========
+const lawyers = [
+  {name:'Adv. Ramesh Naidu', spec:'Criminal', city:'Hyderabad', exp:'14 yrs', rating:4.8, phone:'Nampally Courts', avatar:'⚖️'},
+  {name:'Adv. Priya Sharma', spec:'Cyber', city:'Hyderabad', exp:'9 yrs', rating:4.9, phone:'Cyber Crime Specialist', avatar:'💻'},
+  {name:'Adv. Sunitha Reddy', spec:'Family', city:'Secunderabad', exp:'12 yrs', rating:4.7, phone:'Family Courts', avatar:'🏛️'},
+  {name:'Adv. Mohammed Irfan', spec:'Labour', city:'Hyderabad', exp:'8 yrs', rating:4.6, phone:'Labour Tribunal', avatar:'💼'},
+  {name:'Adv. Kavitha Rao', spec:'Consumer', city:'Hyderabad', exp:'11 yrs', rating:4.8, phone:'Consumer Forum', avatar:'🛡️'},
+  {name:'Adv. Vijay Kumar', spec:'Criminal', city:'LB Nagar', exp:'16 yrs', rating:4.7, phone:'District Court', avatar:'⚖️'},
+  {name:'Adv. Ananya Singh', spec:'Family', city:'Kukatpally', exp:'7 yrs', rating:4.5, phone:'Family & Divorce Courts', avatar:'🏛️'},
+  {name:'Adv. Kiran Babu', spec:'Cyber', city:'HITEC City', exp:'5 yrs', rating:4.8, phone:'IT & Cyber Law', avatar:'💻'},
+];
+
+function filterLawyers() {
+  const filter = document.getElementById('lawyerFilter').value;
+  const list = filter === 'all' ? lawyers : lawyers.filter(l => l.spec === filter);
+  renderLawyers(list);
+}
+
+function renderLawyers(list) {
+  const container = document.getElementById('lawyerCards');
+  container.innerHTML = list.map(l => `
+    <div class="lawyer-card">
+      <div class="lawyer-avatar">${l.avatar}</div>
+      <div class="lawyer-name">${l.name}</div>
+      <div class="lawyer-spec">${l.spec} Law</div>
+      <div class="lawyer-meta">
+        📍 ${l.city} &nbsp;·&nbsp; ${l.exp} experience<br>
+        🏛️ ${l.phone}<br>
+        <span class="rating">★ ${l.rating}</span>
+      </div>
+      <button class="lawyer-contact-btn" onclick="showToast('Contact feature coming soon — visit the nearest bar association.')">📞 Contact Lawyer</button>
+    </div>
+  `).join('');
+}
+
+function locateLawyers() {
+  showToast('📍 Showing lawyers near Hyderabad');
+  renderLawyers(lawyers);
+}
+
+renderLawyers(lawyers);
+
+// ========= CASE TRACKER =========
+let cases = JSON.parse(localStorage.getItem('llCases') || '[]');
+
+function saveCases() {
+  localStorage.setItem('llCases', JSON.stringify(cases));
+}
+
+function renderCases() {
+  const list = document.getElementById('caseList');
+  if (cases.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">📁</div><p>No cases tracked yet.<br>Add a case to keep track of your legal matters.</p></div>`;
+    return;
+  }
+  list.innerHTML = cases.map((c, i) => `
+    <div class="case-item" onclick="deleteCase(${i})">
+      <div class="case-info">
+        <div class="case-title">${c.title}</div>
+        <div class="case-date">${c.date}${c.note ? ' · ' + c.note : ''}</div>
+      </div>
+      <div class="case-status status-${c.status}">${c.status.toUpperCase()}</div>
+    </div>
+  `).join('');
+}
+
+function toggleAddCase() {
+  const form = document.getElementById('addCaseForm');
+  form.className = form.className.includes('visible') ? 'add-case-form' : 'add-case-form visible';
+}
+
+function addCase() {
+  const title = document.getElementById('newCaseTitle').value.trim();
+  if (!title) { showToast('Please enter a case title.'); return; }
+  cases.unshift({
+    title,
+    status: document.getElementById('newCaseStatus').value,
+    note: document.getElementById('newCaseNote').value.trim(),
+    date: new Date().toLocaleDateString('en-IN')
+  });
+  saveCases();
+  renderCases();
+  document.getElementById('newCaseTitle').value = '';
+  document.getElementById('newCaseNote').value = '';
+  toggleAddCase();
+  showToast('✅ Case added!');
+}
+
+function deleteCase(i) {
+  if (confirm('Remove this case from tracker?')) {
+    cases.splice(i, 1);
+    saveCases();
+    renderCases();
+    showToast('Case removed.');
+  }
+}
+
+renderCases();
+
+
+</script>
+</body>
+</html>
